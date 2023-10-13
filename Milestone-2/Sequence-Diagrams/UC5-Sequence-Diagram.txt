@@ -1,0 +1,38 @@
+@startuml
+Actor user
+Participant ui
+Participant "appointmentAPI" as api
+Database "appointment DB" as db
+"user" -> "ui" : Click view appointments
+"ui" -> api : getUserAppointments(userID)
+Activate api
+api -> db : filterBy(userID)
+activate db
+return appointments
+return appointments
+"ui" -> "user" : display current appointments
+"user" -> "ui" : select appointment
+"ui" -> "user" : display selected appointment
+opt appointment deletion
+"user" -> "ui" : select appointment deletion
+"ui" -> api : deleteAppointment(id)
+Activate api
+api -> "db" : delete(id)
+Activate db
+return ok
+return success
+"ui" -> "user" : display confirmation
+end case
+opt appointment modification
+"user" -> "ui" : select appointment modification
+"ui" -> "user" : display scheduling interface
+"user" -> "ui" : enter modified data
+"ui" -> api : modifyAppointment(id, data)
+Activate api
+api -> "db" : modify(id, data)
+Activate db
+return ok
+return success
+"ui" -> "user" : display confirmation
+end case
+@enduml
