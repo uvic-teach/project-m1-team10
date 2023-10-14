@@ -22,6 +22,18 @@ interface Time {
 }
 
 /**
+ * Days of the week
+ */
+enum DaysOfTheWeek {
+    Sunday,
+    Monday,
+    Tuesday,
+    Thursday,
+    Friday,
+    Saturday
+}
+
+/**
  * Schedule
  * Types TBD
  */
@@ -29,6 +41,10 @@ interface Schedule {
     doctor: number
     hoursStart: Time
     hoursEnd: Time
-    days: String[]
+    days: DaysOfTheWeek[]
     holidays?: Date
+}
+
+export function submitAvailability() {
+    return 0;
 }
