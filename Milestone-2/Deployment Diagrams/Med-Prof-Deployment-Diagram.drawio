@@ -1,9 +1,32 @@
-<mxfile host="app.diagrams.net" modified="2023-10-15T22:14:50.888Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" version="22.0.4" etag="kc2M3DIktowCV-21KaiS" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-15T22:15:20.456Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="n8v_unJx1jQcF4dTFW4R" version="22.0.4" type="github">
   <diagram name="Page-1" id="_6_rjmmAdlhByK9vwePi">
-    <mxGraphModel>
+    <mxGraphModel dx="1434" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-1" value="&amp;lt;&amp;lt;executionEnvironment&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Web Server&lt;/b&gt;" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;flipH=1;size=10;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="270" y="120" width="230" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-2" value="«component»&lt;br&gt;&lt;b&gt;Medical Professional Perspective&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="305" y="185" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-3" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" vertex="1" parent="C-J98_JsYiH9i3H2Txh4-2">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=open;endFill=0;dashed=1;" edge="1" parent="1" source="C-J98_JsYiH9i3H2Txh4-5" target="C-J98_JsYiH9i3H2Txh4-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-5" value="&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt;&lt;br&gt;.next" style="html=1;align=center;verticalAlign=middle;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="300" y="285" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-6" value="" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=5;" vertex="1" parent="1">
+          <mxGeometry x="431" y="289.5" width="14" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="C-J98_JsYiH9i3H2Txh4-7" value="&amp;lt;&amp;lt;manifest&amp;gt;&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="373" y="258" width="86" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
