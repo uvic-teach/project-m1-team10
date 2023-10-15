@@ -1,5 +1,5 @@
 import doctors from "@/app/interfaces/data"
-
+export const runtime = 'edge';
 export async function GET(request: Request, context: { params:any }) {
 
     if(context.params){
