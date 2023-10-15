@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-15T16:48:30.603Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="Mx6H4tWoJNCaTb0IH1Av" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-15T19:01:04.130Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.46" etag="RFAHQxhFfsDRBb16azxE" version="22.0.4" type="github">
   <diagram name="Page-1" id="5f0bae14-7c28-e335-631c-24af17079c00">
-    <mxGraphModel dx="1434" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1141" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -157,8 +157,8 @@
         <mxCell id="lpX2XApsvJclECuOutFU-52" value="" style="endArrow=none;html=1;rounded=0;align=center;verticalAlign=top;endFill=0;labelBackgroundColor=none;endSize=2;" parent="1" source="lpX2XApsvJclECuOutFU-51" target="lpX2XApsvJclECuOutFU-53" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lpX2XApsvJclECuOutFU-53" value="Availability" style="ellipse;html=1;fontSize=11;align=center;fillColor=none;points=[];aspect=fixed;resizable=0;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;flipH=1;" parent="1" vertex="1">
-          <mxGeometry x="210" y="156.5" width="8" height="8" as="geometry" />
+        <mxCell id="lpX2XApsvJclECuOutFU-53" value="Doctor Availability" style="ellipse;html=1;fontSize=11;align=center;fillColor=none;points=[];aspect=fixed;resizable=0;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;flipH=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="157" width="8" height="8" as="geometry" />
         </mxCell>
         <mxCell id="lpX2XApsvJclECuOutFU-58" value="" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=oval;endFill=0;endSize=8;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="lpX2XApsvJclECuOutFU-48" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -166,9 +166,9 @@
             <mxPoint x="310" y="161" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="lpX2XApsvJclECuOutFU-59" value="Availability" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="lpX2XApsvJclECuOutFU-58" vertex="1" connectable="0">
+        <mxCell id="lpX2XApsvJclECuOutFU-59" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Doctor Availability&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" parent="lpX2XApsvJclECuOutFU-58" vertex="1" connectable="0">
           <mxGeometry x="0.4305" y="1" relative="1" as="geometry">
-            <mxPoint x="-2" y="-15" as="offset" />
+            <mxPoint x="-17" y="-17" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="lpX2XApsvJclECuOutFU-61" value="SendForm" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -232,10 +232,10 @@
         <mxCell id="ZxnuBTWhYzXRuVG-lCKm-25" value="SumbitAvailiability" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="425" y="206" width="93" height="19" as="geometry" />
         </mxCell>
-        <mxCell id="g2MZ0-lb3N7Sr8p72ey2-1" value="PatientProfile" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+        <mxCell id="g2MZ0-lb3N7Sr8p72ey2-1" value="PatientProfile" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
           <mxGeometry x="725.999025268276" y="128.49994512602893" as="geometry" />
         </mxCell>
-        <mxCell id="g2MZ0-lb3N7Sr8p72ey2-2" value="DoctorSchedule" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+        <mxCell id="g2MZ0-lb3N7Sr8p72ey2-2" value="DoctorSchedule" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
           <mxGeometry x="728.0034414669756" y="439.00109010679614" as="geometry" />
         </mxCell>
       </root>
