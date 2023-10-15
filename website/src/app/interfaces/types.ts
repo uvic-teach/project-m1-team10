@@ -1,46 +1,20 @@
 /**
- * For medical professionals to submit their availability to Appointments
- */
-
-/**
  * Date: DD/MM/YYYY
- * TODO: this should probably be moved to a more generic file
  */
-export interface Date {
-    day: number
-    month: number
-    year: number
-}
+export type Date = `${number}/${number}/${number}`
 
 /**
- * Time: HH/MM in 24 hour time
- * TODO: this should probably be moved to a more generic file
+ * Time: HH:MM in 24 hour time
  */
-export interface Time {
-    hour: number
-    minute: number
-}
-
-/**
- * Days of the week
- */
-// export enum DaysOfTheWeek {
-//     Sunday,
-//     Monday,
-//     Tuesday,
-//     Thursday,
-//     Friday,
-//     Saturday
-// }
+export type Time = `${number|''}${number}:${number}${number}`
 
 /**
  * Schedule
- * Types TBD
  */
 export interface Schedule {
     doctor: number
     hoursStart: Time
     hoursEnd: Time
     days: String[]
-    holidays?: Date
+    holidays?: Date[]
 }
