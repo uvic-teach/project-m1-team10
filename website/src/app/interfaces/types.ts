@@ -6,7 +6,7 @@ export type Date = `${number}/${number}/${number}`
 /**
  * Time: HH:MM in 24 hour time
  */
-export type Time = `${number}:${number}`
+export type Time = `${number|''}${number}:${number}${number}`
 
 /**
  * Schedule
@@ -16,5 +16,5 @@ export interface Schedule {
     hoursStart: Time
     hoursEnd: Time
     days: String[]
-    holidays?: Date
+    holidays?: Date[]
 }

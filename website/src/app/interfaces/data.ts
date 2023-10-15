@@ -13,14 +13,13 @@ const doctors = [
         hoursStart: "08:00" as Time,
         hoursEnd: "15:00" as Time,
         days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        holidays: "30/09/2023" as Date
+        holidays: ["30/09/2023"] as Date[]
     },
     {
         id: 3,
         hoursStart: "10:00" as Time,
         hoursEnd: "16:30" as Time,
         days: ["Monday", "Tuesday", "Saturday"],
-        holidays: null
     }
 ]
 
