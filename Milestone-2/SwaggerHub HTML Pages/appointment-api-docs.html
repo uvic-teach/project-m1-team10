@@ -231,17 +231,21 @@
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
   "List of Appointments" : {
-    "appointmentType" : "In-person",
+    "date" : "10/15/2023",
+    "appointmentType" : "IN",
+    "hoursStart" : "09:30",
     "doctorID" : 1,
     "patientID" : 1,
-    "appointmentDateTime" : [ "2023-03-15 12:00 PM", "2023-09-30 12:00 PM" ]
+    "hoursEnd" : "10:30"
   }
 }, {
   "List of Appointments" : {
-    "appointmentType" : "In-person",
+    "date" : "10/15/2023",
+    "appointmentType" : "IN",
+    "hoursStart" : "09:30",
     "doctorID" : 1,
     "patientID" : 1,
-    "appointmentDateTime" : [ "2023-03-15 12:00 PM", "2023-09-30 12:00 PM" ]
+    "hoursEnd" : "10:30"
   }
 } ]</code></pre>
 
@@ -291,10 +295,12 @@
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
   "List of Appointments" : {
-    "appointmentType" : "In-person",
+    "date" : "10/15/2023",
+    "appointmentType" : "IN",
+    "hoursStart" : "09:30",
     "doctorID" : 1,
     "patientID" : 1,
-    "appointmentDateTime" : [ "2023-03-15 12:00 AM", "2023-09-30 12:00 AM" ]
+    "hoursEnd" : "10:30"
   }
 }</code></pre>
 
@@ -348,14 +354,18 @@
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
   "doctor" : 1,
-  "appointmentType" : "In-person",
+  "date" : "10/15/2023",
+  "appointmentType" : "IN",
+  "hoursStart" : "09:30",
   "patient" : 2,
-  "appointmentDateTime" : "2000-01-23T04:56:07.000+00:00"
+  "hoursEnd" : "10:30"
 }, {
   "doctor" : 1,
-  "appointmentType" : "In-person",
+  "date" : "10/15/2023",
+  "appointmentType" : "IN",
+  "hoursStart" : "09:30",
   "patient" : 2,
-  "appointmentDateTime" : "2000-01-23T04:56:07.000+00:00"
+  "hoursEnd" : "10:30"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -384,7 +394,6 @@
     <li><a href="#DoctorSchedule"><code>DoctorSchedule</code></a></li>
     <li><a href="#DoctorSchedule_List of Appointments"><code>DoctorSchedule_List of Appointments</code></a></li>
     <li><a href="#PatientSchedule"><code>PatientSchedule</code></a></li>
-    <li><a href="#PatientSchedule_List of Appointments"><code>PatientSchedule_List of Appointments</code></a></li>
   </ol>
 
   <div class="model">
@@ -395,9 +404,14 @@
           <div class="param-desc"><span class="param-type">example: 1</span></div>
 <div class="param">patient </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 2</span></div>
-<div class="param">appointmentDateTime </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">hoursStart (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: time</div>
+          <div class="param-desc"><span class="param-type">example: 09:30</span></div>
+<div class="param">hoursEnd (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  format: time</div>
+          <div class="param-desc"><span class="param-type">example: 10:30</span></div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 10/15/2023</span></div>
 <div class="param">appointmentType </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: In-person</span></div>
+          <div class="param-desc"><span class="param-type">example: IN</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -415,31 +429,21 @@
           <div class="param-desc"><span class="param-type">example: 1</span></div>
 <div class="param">patientID (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 1</span></div>
-<div class="param">appointmentDateTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [&quot;2023-03-15 12:00 PM&quot;,&quot;2023-09-30 12:00 PM&quot;]</span></div>
+<div class="param">hoursStart (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: time</div>
+          <div class="param-desc"><span class="param-type">example: 09:30</span></div>
+<div class="param">hoursEnd (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  format: time</div>
+          <div class="param-desc"><span class="param-type">example: 10:30</span></div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 10/15/2023</span></div>
 <div class="param">appointmentType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: In-person</span></div>
+          <div class="param-desc"><span class="param-type">example: IN</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="PatientSchedule"><code>PatientSchedule</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">List of Appointments (optional)</div><div class="param-desc"><span class="param-type"><a href="#PatientSchedule_List of Appointments">PatientSchedule_List of Appointments</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="PatientSchedule_List of Appointments"><code>PatientSchedule_List of Appointments</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">doctorID (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 1</span></div>
-<div class="param">patientID (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 1</span></div>
-<div class="param">appointmentDateTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [&quot;2023-03-15 12:00 AM&quot;,&quot;2023-09-30 12:00 AM&quot;]</span></div>
-<div class="param">appointmentType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: In-person</span></div>
+      <div class="param">List of Appointments (optional)</div><div class="param-desc"><span class="param-type"><a href="#DoctorSchedule_List of Appointments">DoctorSchedule_List of Appointments</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>
