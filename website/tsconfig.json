@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/db/conn.mjs", "src/app/db/dataSource.mjs", "src/app/lib/prisma.js", "src/app/api/createuser"],
   "exclude": ["node_modules"]
 }
