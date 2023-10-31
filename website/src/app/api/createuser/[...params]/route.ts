@@ -1,6 +1,8 @@
 import prisma from "@/app/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
+export const runtime = 'edge';
+
 export async function GET(req:NextApiRequest, context: { params:any }) {
 
     const name = context.params.params[0]
