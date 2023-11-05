@@ -20,15 +20,15 @@ model Employee {
   id           Int            @id @default(autoincrement())
   firstName    String
   lastName     String
-  Availability Availability[]
+  availability Availability?
 }
 
 model Availability {
   id         Int       @id @default(autoincrement())
-  Employee   Employee? @relation(fields: [employeeId], references: [id])
-  employeeId Int?
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int @unique
   hoursStart String
   hoursEnd String
   days String[]
-  holiday DateTime[]
+  holiday DateTime[] @db.Date
 }
