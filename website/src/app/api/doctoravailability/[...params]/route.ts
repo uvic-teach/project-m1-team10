@@ -46,7 +46,7 @@ export async function POST(req: Request, context: { params:any }) {
         const unrefinedHoliday = context.params.params[5]
         let holiday = [];
         if(unrefinedHoliday){
-            holiday  = unrefinedHoliday.map(date => date.toISOString() )
+            holiday  = unrefinedHoliday.map((date:any) => date.toISOString() )
 
         }
 
@@ -72,6 +72,8 @@ export async function POST(req: Request, context: { params:any }) {
 
 
     }catch (error){
+
+        return Response.json({error: error})
 
     }
 
