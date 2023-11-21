@@ -8,6 +8,8 @@ type ContextProps = {
     loginUser: (e: SyntheticEvent) => void;
     logoutUser: (e: SyntheticEvent) => void;
     registerUser: (e: SyntheticEvent) => void;
+    loginDoctor: (e: SyntheticEvent) => void;
+    logoutDoctor: (e: SyntheticEvent) => void;
 };
 
 type User = {
@@ -96,11 +98,24 @@ export default function AuthProvider({
         router.push("/login");
     };
 
+    let loginDoctor = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        console.log("Doctor logged in");
+    }
+
+    let logoutDoctor = (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        router.push("/doctor-login");
+    }
+
     let contextData = {
         user: user,
         loginUser: loginUser,
         logoutUser: logoutUser,
         registerUser: registerUser,
+        loginDoctor: loginDoctor,
+        logoutDoctor: logoutDoctor,
     };
 
     return (
