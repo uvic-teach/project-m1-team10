@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String  @id @default(cuid())
+  name  String?
+  email String  @unique
+}
+
+model Employee {
+  id           Int           @id @default(autoincrement())
+  firstName    String
+  lastName     String
+  availability Availability?
+}
+
+model Availability {
+  id         Int        @id @default(autoincrement())
+  employeeId Int        @unique
+  hoursStart String
+  hoursEnd   String
+  days       String[]
+  holiday    DateTime[] @db.Date
+  employee   Employee   @relation(fields: [employeeId], references: [id])
+}
