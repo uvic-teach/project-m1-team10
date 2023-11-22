@@ -16,16 +16,16 @@ export default function Login() {
                     <div className="mb-4">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
-                            htmlFor="id"
+                            htmlFor="email"
                         >
-                            ID Number
+                            Email Address
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="id"
-                            name="id"
-                            type="number"
-                            placeholder="ID"
+                            id="email"
+                            name="email"
+                            type="string"
+                            placeholder="example@email.com"
                         />
                     </div>
                     <div className="mb-6">
