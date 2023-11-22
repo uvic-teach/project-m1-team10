@@ -4,14 +4,21 @@ import { NextApiResponse, NextApiRequest, NextApiHandler} from "next";
 export async function POST(req:NextApiRequest, context: { params:any }) {
     try{
        
-        if(context.params.params.length === 1){
+        if(context.params.params.length === 3){
 
             const patientPHN = parseInt(context.params.params[0])
+            const employeeID = parseInt(context.params.params[1])
+            const description = parseInt(context.params.params[2])
 
+            const  data = {
+                "user": patientPHN, 
+                "doctor": employeeID, 
+                "description": description
+            }
 
-            const response = await fetch(`https://log-in-microservice.vercel.app/api/user-history/${patientPHN}/`, {
+            const response = await fetch(`https://log-in-microservice.vercel.app/api/history/`, {
                 method: "POST",
-                body: JSON.stringify({description:""})
+                body: JSON.stringify(data)
             })
 
             const Patient = await response.json()

@@ -9,8 +9,6 @@ type ContextProps = {
     loginUser: (e: SyntheticEvent) => void;
     logoutUser: (e: SyntheticEvent) => void;
     registerUser: (e: SyntheticEvent) => void;
-    loginDoctor: (e: SyntheticEvent) => void;
-    logoutDoctor: (e: SyntheticEvent) => void;
 };
 
 type User = {
@@ -152,8 +150,6 @@ export default function AuthProvider({
         loginUser: loginUser,
         logoutUser: logoutUser,
         registerUser: registerUser,
-        loginDoctor: loginDoctor,
-        logoutDoctor: logoutDoctor,
     };
 
     return (

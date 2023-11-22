@@ -8,9 +8,12 @@ export async function POST(req:NextApiRequest, context: { params:any }) {
 
             const patientPHN = parseInt(context.params.params[0])
 
+            const data = {"description": "You have cancer"}
 
-            const response = await fetch(`https://log-in-microservice.vercel.app/api/user-history/${patientPHN}/`, {
-                method: "GET"
+
+            const response = await fetch(`https://log-in-microservice.vercel.app/api/history/?phn=${patientPHN}`, {
+                method: "POST",
+                body: JSON.stringify(data)
             })
 
             const Patient = await response.json()
