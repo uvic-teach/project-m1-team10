@@ -2,6 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { createContext, useState, SyntheticEvent, useContext } from "react";
+import { SHA256 as sha256 } from "crypto-js";
+
+const hashPassword = (str: string) => {
+    return sha256(str).toString();
+};
 
 type ContextProps = {
     user: User | null;
@@ -9,6 +14,8 @@ type ContextProps = {
     loginUser: (e: SyntheticEvent) => void;
     logoutUser: (e: SyntheticEvent) => void;
     registerUser: (e: SyntheticEvent) => void;
+    loginDoctor: (e: SyntheticEvent) => void;
+    logoutDoctor: (e: SyntheticEvent) => void;
 };
 
 type User = {
@@ -119,7 +126,7 @@ export default function AuthProvider({
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 email: target.email.value,
-                password: target.password.value,
+                password: hashPassword(target.password.value),
             }),
         });
 
@@ -150,6 +157,8 @@ export default function AuthProvider({
         loginUser: loginUser,
         logoutUser: logoutUser,
         registerUser: registerUser,
+        loginDoctor: loginDoctor,
+        logoutDoctor: logoutDoctor,
     };
 
     return (
