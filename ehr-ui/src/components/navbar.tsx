@@ -2,13 +2,15 @@
 
 import React, { SyntheticEvent, useContext } from "react";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
 import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar() {
     let { logoutUser, user } = useAuth();
+    const path = usePathname();
 
     return (
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 w-full md:w-auto">
             <h1 className="text-3xl">
                 <Link href="/">E-Health</Link>
             </h1>
