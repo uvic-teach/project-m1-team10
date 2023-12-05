@@ -2,16 +2,16 @@
 
 import React, { SyntheticEvent, useContext } from "react";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
 import { useAuth } from "../../context/AuthContext";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     let { logoutUser, user } = useAuth();
-    const pathname = usePathname()
-
+    const path = usePathname();
 
     return (
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 w-full md:w-auto">
             <h1 className="text-3xl">
                 <Link href="/">E-Health</Link>
             </h1>
@@ -21,7 +21,7 @@ export default function Navbar() {
                         className="border rounded px-2 py-1 border-slate-300 text-slate-300 hover:bg-slate-700 hover:duration-150"
                         href="/appointments"
                     >
-                        Appointments 
+                        Appointments
                     </Link>
                 )}
                 {!user && !pathname.includes('/login') && (
