@@ -2,9 +2,8 @@
 
 import { SyntheticEvent, useContext, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { error } from "console";
-
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -18,24 +17,29 @@ export default function Login() {
             const response = await signIn("credentials", {
                 email,
                 password,
-                callbackUrl: "/doctor/home", //`${process.env.NEXTAUTH_URL}`,
+                callbackUrl: `${process.env.NEXTAUTH_URL}/doctor/home`,
                 redirect: false,
             });
 
             if (response?.ok) {
                 console.log("Login successful");
-                //return session.user;
-            } else {
+                return;
+            } else if (response != null) {
                 console.log("Login failed");
+                setAuthError("Please check your credentials and try again");
+            } else {
+                console.log("Login failed:", response);
+                setAuthError("Login failed");
             }
 
             return response;
+
         } catch (error: any) {
             console.error("Authentication error:", error);
 
-            if (error.message === 'Invalid credentials') {
+            if (error.message === "Invalid credentials") {
                 console.log(error.message);
-                setAuthError(error);
+                setAuthError(error.message);
                 return null;
             } else {
                 // Handle other errors or log them as needed
@@ -48,10 +52,6 @@ export default function Login() {
     return (
         <>
             <div className="w-full max-w-xs">
-                {authError && (
-                    <div className="cred error message text-red-600 text-med font-bold mb-2 px-4">
-                        Invalid credentials, please try again
-                    </div>)}
                 <form
                     onSubmit={handleSubmit}
                     className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -101,6 +101,11 @@ export default function Login() {
                         </button>
                     </div>
                 </form>
+                {authError && (
+                    <div className="cred error message text-red-600 text-med font-bold mb-2 px-4">
+                        <h1>Oops! Something went wrong</h1>
+                        <h2>{authError}</h2>
+                    </div>)}
             </div>
         </>
     );
