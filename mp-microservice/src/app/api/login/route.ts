@@ -23,7 +23,7 @@ export async function POST(request: Request, context: { params: any }) {
                 image: true,
             },
         });
-        if (user && user.password === hashPassword(password)) {
+        if (user && user.password === password) {
             return Response.json({
                 id: user.id,
                 name: user.name,
