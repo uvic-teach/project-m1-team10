@@ -5,6 +5,7 @@ import { useAuth } from "../../../../context/AuthContext";
 import { useRouter } from 'next/navigation'
 import { Jomolhari } from "next/font/google";
 import { ClassNames } from "@emotion/react";
+import Link from "next/link";
 
 export default function Login() {
     //const { loginUser } = {};
@@ -72,15 +73,14 @@ export default function Login() {
                                 placeholder="Password*"
                             />
                         </div>
+
+                        <p className="pb-6"> 
+                            Don't have an account? 
+                            <Link href="/register" className="font-bold hover:underline"> Sign up </Link>
+                        </p>
+
                         <div className="flex items-center justify-between">
-                            <button
-                                className="bg-custom-blue hover:bg-custom-blue-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                name ="action"
-                                value="register"
-                                onClick={() => router.push('/register')}
-                            >
-                                Register
-                            </button>
+                        
 
                             <button
                                 className="bg-custom-blue hover:bg-custom-blue-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
