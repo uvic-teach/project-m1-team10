@@ -3,6 +3,7 @@
 import { use, useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 import { Providers } from "@/app/providers";
+import Link from "next/link";
 
 export default function Login() {
     const { registerUser } = useAuth();
@@ -13,7 +14,7 @@ export default function Login() {
              <div className="flex h-full w-full md:w-1/3 flex-col justify-center px-2 rounded-md">
                 {/* Text at the top */}
                 <p className="text-white text-center text-2xl pb-[40px] font-['Jomolhari']">
-                    We make scheduling with your Healthcare Provider a breeze!
+                    Join Cedule today!
                 </p>
 
                 {/* Login Form */}
@@ -87,9 +88,14 @@ export default function Login() {
                                 placeholder="Password*"
                             />
                         </div>
-                        <div className="flex items-center justify-between">
-                        
 
+                        <p className="pb-6"> 
+                            Already have an account? 
+                            <Link href="/login" className="font-bold hover:underline"> Log in</Link>
+
+                        </p>
+
+                        <div className="flex items-center justify-between">
                             <button
                                 className="bg-custom-blue hover:bg-custom-blue-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit"
