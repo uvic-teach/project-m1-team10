@@ -18,7 +18,8 @@ const config: Config = {
         "sidebar-collapsed": "64px auto", //for collapsed sidebar layout
       },
       colors: {
-        'custom-blue': '#384861'
+        'custom-blue': '#384861',
+        'custom-blue-hover': '#4c5a74'
       },
     },
   },
