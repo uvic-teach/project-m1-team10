@@ -52,7 +52,7 @@ export default function AuthProvider({
             const updatedUser = { name: userData.name, phn: userData.phn };
             setUser(updatedUser);
             console.log(user);
-            router.push("/");
+            router.push("/patient-dashboard");
         } else {
             console.log("Login failed.");
         }

@@ -2,35 +2,35 @@
 
 import { SyntheticEvent, useContext, useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { Jomolhari } from "next/font/google";
 import { ClassNames } from "@emotion/react";
 import Link from "next/link";
 
 export default function Login() {
-    //const { loginUser } = {};
+    const { loginUser } = useAuth();
     const router = useRouter();
-    const handleSubmit = (event:any) => {
+    const handleSubmit = (event: any) => {
         event.preventDefault();
         // Handle form submission here
         const action = event.target.action.value;
-      
-      switch (action) {
-        case 'register':
-          // Execute save action
-          router.push('/register')
-          break;
-        case 'login':
-          // Execute delete action
-          break;
-        default:
-          // Handle other actions
-          break;
-      }
-    }
+
+        switch (action) {
+            case "register":
+                // Execute save action
+                router.push("/register");
+                break;
+            case "login":
+                loginUser(event);
+                break;
+            default:
+                // Handle other actions
+                break;
+        }
+    };
 
     return (
-        <>  
+        <>
             <div className="flex h-full w-full md:w-1/3 flex-col justify-center px-2 rounded-md">
                 {/* Text at the top */}
                 <p className="text-white text-center text-2xl pb-[50px] font-['Jomolhari']">
@@ -74,14 +74,17 @@ export default function Login() {
                             />
                         </div>
 
-                        <p className="pb-6"> 
-                            Don't have an account? 
-                            <Link href="/register" className="font-bold hover:underline"> Sign up </Link>
+                        <p className="pb-6">
+                            {"Don't have an account? "}
+                            <Link
+                                href="/register"
+                                className="font-bold hover:underline"
+                            >
+                                Sign up
+                            </Link>
                         </p>
 
                         <div className="flex items-center justify-between">
-                        
-
                             <button
                                 className="bg-custom-blue hover:bg-custom-blue-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit"
@@ -90,10 +93,8 @@ export default function Login() {
                             >
                                 Sign In
                             </button>
-
                         </div>
                     </form>
-
                 </div>
 
                 {/* Logo at the bottom*/}
@@ -101,7 +102,6 @@ export default function Login() {
                     Cedule
                 </p>
             </div>
-        
         </>
     );
 }
