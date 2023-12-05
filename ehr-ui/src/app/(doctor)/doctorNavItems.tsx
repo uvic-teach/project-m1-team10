@@ -1,14 +1,14 @@
-import { FaFolder, FaRegComments } from "react-icons/fa";
-import { BiMessageSquareDots } from "react-icons/bi";
-import { CiHome } from "react-icons/ci";
+import { MdSpaceDashboard } from "react-icons/md";
+import { IoMdCalendar } from "react-icons/io";
 import { HiUserGroup } from "react-icons/hi2";
+import { FaRegCircleCheck } from "react-icons/fa6";
 import Link from "next/link";
 
 export const doctorNavItems= [
     {
       name: "Dashboard",
       href: "/doctor-dashboard",
-      icon: <CiHome className="w-6 h-6" />,
+      icon: <MdSpaceDashboard className="w-6 h-6" />,
       current: true
     },
     {
@@ -20,13 +20,13 @@ export const doctorNavItems= [
     {
       name: "Appointments",
       href: "/appointments",
-      icon: <FaFolder className="w-6 h-6" />,
+      icon: <IoMdCalendar className="w-6 h-6" />,
       current: false,
     },
     {
         name: "Availability",
         href: "/availabilty",
-        icon: <FaFolder className="w-6 h-6" />,
+        icon: <FaRegCircleCheck className="w-6 h-6" />,
         current: false
       },
 ]

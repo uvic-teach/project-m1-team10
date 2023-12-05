@@ -1,26 +1,24 @@
-import { FaFolder, FaRegComments } from "react-icons/fa";
-import { BiMessageSquareDots } from "react-icons/bi";
-import { CiHome } from "react-icons/ci";
-import { HiUserGroup } from "react-icons/hi2";
-import Link from "next/link";
+import { MdSpaceDashboard } from "react-icons/md";
+import { BsPersonLinesFill } from "react-icons/bs";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 export const patientNavItems= [
     {
       name: "Dashboard",
       href: "/patient-dashboard",
-      icon: <CiHome className="w-6 h-6" />,
+      icon: <MdSpaceDashboard className="w-6 h-6" />,
       current: false
     },
     {
       name: "History",
       href: "/history",
-      icon: <HiUserGroup className="w-6 h-6" />,
+      icon: <BsPersonLinesFill className="w-6 h-6" />,
       current: false
     },
     {
       name: "Appointments",
       href: "/appointments",
-      icon: <FaFolder className="w-6 h-6" />,
+      icon: <FaRegCircleCheck className="w-6 h-6" />,
       current: false,
     },
 ]
