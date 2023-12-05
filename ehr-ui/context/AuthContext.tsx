@@ -17,6 +17,8 @@ type User = {
 
 const AuthContext = createContext<ContextProps | null>(null);
 
+const apiURL: string = "https://log-in-microservice.vercel.app/api";
+
 export default function AuthProvider({
     children,
 }: {
@@ -33,7 +35,7 @@ export default function AuthProvider({
             password: { value: string };
         };
 
-        let response = await fetch("http://localhost:8000/api/login", {
+        let response = await fetch(`${apiURL}/login`, {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -65,7 +67,7 @@ export default function AuthProvider({
             password: { value: string };
         };
 
-        let response = await fetch("http://localhost:8000/api/register", {
+        let response = await fetch(`${apiURL}/register`, {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -86,7 +88,7 @@ export default function AuthProvider({
     let logoutUser = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        await fetch("http://localhost:8000/api/logout", {
+        await fetch(`${apiURL}/logout`, {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
