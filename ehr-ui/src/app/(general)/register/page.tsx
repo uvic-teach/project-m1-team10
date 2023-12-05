@@ -13,7 +13,7 @@ export default function Login() {
         <>
              <div className="flex h-full w-full md:w-1/3 flex-col justify-center px-2 rounded-md">
                 {/* Text at the top */}
-                <p className="text-white text-center text-2xl pb-[40px] font-['Jomolhari']">
+                <p className="text-white text-center text-2xl pb-[15px] font-['Jomolhari']">
                     Join Cedule today!
                 </p>
 
@@ -111,7 +111,7 @@ export default function Login() {
                 </div>
 
                 {/* Logo at the bottom*/}
-                <p className="text-white text-center text-5xl pt-[40px] font-['Gigi']">
+                <p className="text-white text-center text-5xl pt-[30px] font-['Gigi']">
                     Cedule
                 </p>
             </div>
