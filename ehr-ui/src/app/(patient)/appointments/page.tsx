@@ -1,7 +1,5 @@
 "use client";
 
-import { jwtDecode } from "jwt-decode";
-import Cookies from "js-cookie";
 import { use, useContext, useEffect, useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 

@@ -25,7 +25,7 @@ type User = {
 
 type Doctor = {
     id: number;
-}
+};
 
 const AuthContext = createContext<ContextProps | null>(null);
 
@@ -64,8 +64,7 @@ export default function AuthProvider({
             let userData = await response.json();
             console.log(userData);
 
-            const updatedUser = { name: userData.name, phn: userData.phn };
-            setUser(updatedUser);
+            setUser({ ...user, name: userData.name, phn: userData.phn });
             console.log(user);
             router.push("/patient-dashboard");
         } else {
@@ -92,9 +91,12 @@ export default function AuthProvider({
                 password: target.password.value,
             }),
         });
+        let userData = await response.json();
+
+        setUser({ ...user, name: userData.name, phn: userData.phn });
 
         if (response.ok) {
-            router.push("/login");
+            router.push("/patient-dashboard");
         } else {
             console.log("Registration failed.");
         }
@@ -144,13 +146,13 @@ export default function AuthProvider({
         } else {
             console.log("Login failed.");
         }
-    }
+    };
 
     let logoutDoctor = (e: SyntheticEvent) => {
         e.preventDefault();
 
         router.push("/doctor/login");
-    }
+    };
 
     let contextData = {
         user: user,
