@@ -19,7 +19,10 @@ const config: Config = {
       },
       colors: {
         'custom-blue': '#384861',
-        'custom-blue-hover': '#4c5a74'
+        'custom-blue-hover': '#4c5a74',
+        'custom-hover-grey': '#e2e4e7',
+        'custom-div-grey': '#c9c1c1',
+        'custom-button-green': '#247d37'
       },
     },
   },

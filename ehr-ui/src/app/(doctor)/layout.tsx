@@ -18,10 +18,10 @@ export default function RootLayout({ children,}: {children: React.ReactNode }) {
         <Providers>
             <html lang="en">
                 <body className="bg-custom-blue">
-                    <TestNavBar />
+                    <TestNavBar home='doctor-dashboard' />
 
                     <div className="flex flex-col md:flex-row flex-1">
-                        <Sidebar SideBarItems={doctorNavItems} />
+                        <Sidebar SideBarItems={doctorNavItems}/>
                         <main className="flex-1 m-4">
                             {children}
                         </main>
