@@ -4,6 +4,7 @@ import React, { SyntheticEvent, useContext } from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { useAuth } from "../../context/AuthContext";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     let { logoutUser, user } = useAuth();
@@ -23,7 +24,7 @@ export default function Navbar() {
                         Appointments
                     </Link>
                 )}
-                {!user && (
+                {!user && !pathname.includes('/login') && (
                     <Link
                         className="border rounded outline-none border-slate-300 mx-1 px-2 py-1 text-slate-300 hover:bg-slate-700 focus-within:bg-slate-700 hover:duration-150"
                         href="/login"
@@ -39,7 +40,7 @@ export default function Navbar() {
                         Logout
                     </button>
                 )}
-                {!user && (
+                {!user && !pathname.includes('/register') && !pathname.includes('/doctor') && (
                     <Link
                         className="border rounded outline-none mx-1 px-2 py-1 border-slate-300  text-slate-300 hover:bg-slate-700 focus-within:bg-slate-700 hover:duration-150"
                         href="/register"
