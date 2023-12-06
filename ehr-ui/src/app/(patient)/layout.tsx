@@ -5,15 +5,19 @@ import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { Providers } from "../providers";
 import TestNavBar from "@/components/test-navbar";
-import * as React from 'react';
+import * as React from "react";
 import { patientNavItems } from "./patientNavItems";
 
 const metadata = {
-    title: 'Patient Webpages',
-    description: 'Patient Webpges'
-}
+    title: "Patient Webpages",
+    description: "Patient Webpges",
+};
 
-export default function RootLayout({ children,}: {children: React.ReactNode }) {
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     return (
         <Providers>
             <html lang="en">
@@ -29,6 +33,5 @@ export default function RootLayout({ children,}: {children: React.ReactNode }) {
                 </body>
             </html>
     </Providers>
-         
     );
 }

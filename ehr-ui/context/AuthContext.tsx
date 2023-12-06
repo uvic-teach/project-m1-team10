@@ -30,6 +30,7 @@ type Doctor = {
 const AuthContext = createContext<ContextProps | null>(null);
 
 const apiURL: string = "https://log-in-microservice.vercel.app/api";
+
 const doctorApiURL: string = "";
 
 export default function AuthProvider({
@@ -66,7 +67,7 @@ export default function AuthProvider({
             const updatedUser = { name: userData.name, phn: userData.phn };
             setUser(updatedUser);
             console.log(user);
-            router.push("/");
+            router.push("/patient-dashboard");
         } else {
             console.log("Login failed.");
         }
