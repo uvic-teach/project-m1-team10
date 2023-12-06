@@ -17,14 +17,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
-            <body className="bg-custom-blue">
-                <TestNavBar home="patient-dashboard" />
-                <div className="flex flex-col md:flex-row flex-1">
-                    <Sidebar SideBarItems={patientNavItems} />
-                    <main className="flex-1 m-4">{children}</main>
-                </div>
-            </body>
-        </html>
+        <>
+            <TestNavBar home="patient-dashboard" />
+            <div className="flex flex-col md:flex-row flex-1">
+                <Sidebar SideBarItems={patientNavItems} />
+                <main className="flex-1 m-4">{children}</main>
+            </div>
+        </>
     );
 }
