@@ -2,10 +2,10 @@
 
 import "../globals.css";
 import Sidebar from "@/components/sidebar";
-import { Providers } from "../providers";
-import TestNavBar from "@/components/test-navbar";
+
 import * as React from "react";
 import { doctorNavItems } from "./doctorNavItems";
+import NavBar from "@/components/navbar";
 
 const metadata = {
     title: "Patient Webpages",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
     return (
         <>
-            <TestNavBar home="doctor-dashboard" />
+            <NavBar home="doctor-dashboard" />
 
             <div className="flex flex-col md:flex-row flex-1">
                 <Sidebar SideBarItems={doctorNavItems} />
