@@ -2,23 +2,7 @@
 
 import { use, useContext, useEffect, useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
-
-type appointment = {
-    id: number;
-    date: string;
-    start: string;
-    end: string;
-    method: "IN" | "VI" | "PH";
-    patient: number;
-    doctor: number;
-    description: null | string;
-};
-
-type token = {
-    jwt: string;
-    phn: number;
-    name: string;
-};
+import { useTest } from "../../../../context/TestContext";
 
 function formatDate(dateString: string) {
     const [day, month, year] = dateString.split("/");
@@ -48,17 +32,7 @@ const appointmentMethods = {
 };
 
 export default function Page() {
-    const [appointments, setAppointments] = useState<Array<appointment>>([]);
-
-    let { user } = useAuth();
-
-    useEffect(() => {
-        if (!user) return;
-        let url = `https://appointment-service.onrender.com/appointments/?patient=${user.phn}`;
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => setAppointments(data));
-    }, [user]);
+    let { appointments } = useTest();
 
     return (
         <>

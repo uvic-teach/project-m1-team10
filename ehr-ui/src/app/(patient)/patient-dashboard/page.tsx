@@ -3,13 +3,13 @@ import { Inter } from "next/font/google";
 import { useAuth } from "../../../../context/AuthContext";
 import { redirect } from "next/navigation";
 import { FaPlus } from "react-icons/fa";
+import { useTest } from "../../../../context/TestContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     let { user } = useAuth();
-
-    const numUpcoming: number = 6;
+    let { appointments } = useTest();
 
     return (
         <>
@@ -28,17 +28,19 @@ export default function Home() {
                         </button>
                     </div>
 
-                    <div className="max-w-md mx-auto w-full md:w-1/3 bg-white rounded-xl hover:bg-custom-hover-grey shadow-md overflow-hidden md:max-w-2xl divide-x grid grid-col-3 grid-flow-col">
-                        <div className="col-span-1 ">
-                            <button className="p-6">
-                                View Upcoming Appointments
-                            </button>
-                        </div>
+                    {appointments && (
+                        <div className="max-w-md mx-auto w-full md:w-1/3 bg-white rounded-xl hover:bg-custom-hover-grey shadow-md overflow-hidden md:max-w-2xl divide-x grid grid-col-3 grid-flow-col">
+                            <div className="col-span-1 ">
+                                <button className="p-6">
+                                    View Upcoming Appointments
+                                </button>
+                            </div>
 
-                        <div className="justify-center items-center col-span-1 p-6">
-                            <button>{numUpcoming}</button>
+                            <div className="justify-center items-center col-span-1 p-6">
+                                <button>{appointments.length}</button>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             )}
         </>
