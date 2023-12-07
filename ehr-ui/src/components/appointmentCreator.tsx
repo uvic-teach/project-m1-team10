@@ -34,127 +34,16 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { FaPlus } from "react-icons/fa6";
+import {
+    appointmentMethods,
+    formatDateForAPI,
+    formatDateFromAPI,
+} from "@/lib/appointments";
+import { useAuth } from "../../context/AuthContext";
+import { useAppointment } from "../../context/AppointmentContext";
+import { doctors } from "@/lib/hardcoded_values";
 
 const inter = Inter({ subsets: ["latin"] });
-
-type doctor = {
-    id: number;
-    name: string;
-    specialty: string;
-};
-
-let doctors: doctor[] = [
-    {
-        id: 1,
-        name: "Dr. John Doe",
-        specialty: "Family Physician",
-    },
-    {
-        id: 2,
-        name: "Dr. Lily Chang",
-        specialty: "Dermatologist",
-    },
-    {
-        id: 3,
-        name: "Dr. William Perth",
-        specialty: "Cardiologist",
-    },
-    {
-        id: 4,
-        name: "Dr. Jessica Smith",
-        specialty: "Gynecologist",
-    },
-    {
-        id: 5,
-        name: "Dr. Robert Lee",
-        specialty: "Neurologist",
-    },
-    {
-        id: 6,
-        name: "Dr. Sarah Jones",
-        specialty: "Pediatrician",
-    },
-    {
-        id: 7,
-        name: "Dr. David Wang",
-        specialty: "Psychiatrist",
-    },
-    {
-        id: 8,
-        name: "Dr. Mary Brown",
-        specialty: "Radiologist",
-    },
-    {
-        id: 9,
-        name: "Dr. Michael Miller",
-        specialty: "Surgeon",
-    },
-    {
-        id: 10,
-        name: "Dr. Lisa Wilson",
-        specialty: "Urologist",
-    },
-    {
-        id: 11,
-        name: "Dr. James Taylor",
-        specialty: "Ophthalmologist",
-    },
-    {
-        id: 12,
-        name: "Dr. Karen Anderson",
-        specialty: "Otolaryngologist",
-    },
-    {
-        id: 13,
-        name: "Dr. Charles Thomas",
-        specialty: "Oncologist",
-    },
-    {
-        id: 14,
-        name: "Dr. Patricia Jackson",
-        specialty: "Endocrinologist",
-    },
-    {
-        id: 15,
-        name: "Dr. Christopher White",
-        specialty: "Gastroenterologist",
-    },
-    {
-        id: 16,
-        name: "Dr. Jennifer Harris",
-        specialty: "Nephrologist",
-    },
-    {
-        id: 17,
-        name: "Dr. Daniel Martin",
-        specialty: "Rheumatologist",
-    },
-    {
-        id: 18,
-        name: "Dr. Elizabeth Thompson",
-        specialty: "Allergist",
-    },
-    {
-        id: 19,
-        name: "Dr. Matthew Garcia",
-        specialty: "Anesthesiologist",
-    },
-    {
-        id: 20,
-        name: "Dr. Betty Martinez",
-        specialty: "Hematologist",
-    },
-    {
-        id: 21,
-        name: "Dr. Anthony Robinson",
-        specialty: "Pathologist",
-    },
-    {
-        id: 22,
-        name: "Dr. Dorothy Clark",
-        specialty: "Physiatrist",
-    },
-];
 
 type appointmentTime = {
     hour: number;
@@ -204,16 +93,51 @@ export default function AppointmentCreate() {
     const [date, setDate] = React.useState<Date>();
     const [doctor, setDoctor] = React.useState<number>();
     const [time, setTime] = React.useState<number>();
+    const [method, setMethod] = React.useState<string>();
 
     const [open, setOpen] = React.useState<boolean>(false);
 
+    const { user } = useAuth();
+    const { updateAppointments } = useAppointment();
+
     let createAppointment = async (e: React.SyntheticEvent) => {
-        console.log("Creating appointment");
-        console.log(date);
-        console.log(doctor);
-        console.log(time);
-        setOpen(false);
+        e.preventDefault();
+        if (!date || !doctor || !time || !user?.phn) return;
+
+        let body = {
+            date: formatDateForAPI(date),
+            doctor: doctor,
+            patient: user.phn,
+            start: `${time}:00`,
+            end: `${time + 1}:00`,
+            method: "IN",
+        };
+
+        console.log(body);
+
+        const response = await fetch(
+            "https://appointment-service.onrender.com/appointments/",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            }
+        );
+
+        if (!response.ok) {
+            console.error("Failed to create appointment", response);
+        } else {
+            console.log("Appointment created successfully");
+            setOpen(false);
+            updateAppointments();
+        }
     };
+
+    // ...
+
+    <Button onClick={createAppointment}>Create</Button>;
 
     return (
         <>
@@ -249,15 +173,17 @@ export default function AppointmentCreate() {
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Doctors</SelectLabel>
-                                        {doctors.map((doctor) => (
-                                            <SelectItem
-                                                key={doctor.id}
-                                                value={String(doctor.id)}
-                                            >
-                                                {doctor.name} -{" "}
-                                                {doctor.specialty}
-                                            </SelectItem>
-                                        ))}
+                                        {Object.values(doctors).map(
+                                            (doctor) => (
+                                                <SelectItem
+                                                    key={doctor.id}
+                                                    value={String(doctor.id)}
+                                                >
+                                                    {doctor.name} -{" "}
+                                                    {doctor.specialty}
+                                                </SelectItem>
+                                            )
+                                        )}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -320,10 +246,36 @@ export default function AppointmentCreate() {
                                 </SelectContent>
                             </Select>
                         </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="method" className="text-right">
+                                Method
+                            </Label>
+                            <Select
+                                onValueChange={(method) => setMethod(method)}
+                            >
+                                <SelectTrigger className="w-[280px]">
+                                    <SelectValue placeholder="Select a method" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Methods</SelectLabel>
+                                        <SelectItem key={1} value={"IN"}>
+                                            In-Person
+                                        </SelectItem>
+                                        <SelectItem key={2} value={"VI"}>
+                                            Virtual
+                                        </SelectItem>
+                                        <SelectItem key={3} value={"PH"}>
+                                            Phone
+                                        </SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
                     <DialogFooter>
                         <Button type="submit" onClick={createAppointment}>
-                            Save changes
+                            Create
                         </Button>
                     </DialogFooter>
                 </DialogContent>

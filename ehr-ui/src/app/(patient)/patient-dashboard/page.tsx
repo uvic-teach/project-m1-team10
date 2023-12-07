@@ -3,14 +3,14 @@ import { Inter } from "next/font/google";
 import { useAuth } from "../../../../context/AuthContext";
 import { redirect } from "next/navigation";
 import { FaPlus } from "react-icons/fa";
-import { useTest } from "../../../../context/TestContext";
+import { useAppointment } from "../../../../context/AppointmentContext";
 import AppointmentCreate from "@/components/appointmentCreator";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     let { user } = useAuth();
-    let { appointments } = useTest();
+    let { appointments } = useAppointment();
 
     return (
         <>

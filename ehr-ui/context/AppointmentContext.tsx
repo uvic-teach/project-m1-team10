@@ -1,7 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createContext, useState, useContext, useEffect } from "react";
+import {
+    createContext,
+    useState,
+    useContext,
+    useEffect,
+    useCallback,
+} from "react";
 import { useAuth } from "./AuthContext";
 
 type appointment = {
@@ -17,11 +23,12 @@ type appointment = {
 
 type ContextProps = {
     appointments: Array<appointment>;
+    updateAppointments: () => void;
 };
 
-const TestContext = createContext<ContextProps | null>(null);
+const AppointmentContext = createContext<ContextProps | null>(null);
 
-export default function TestProvider({
+export default function AppointmentProvider({
     children,
 }: {
     children: React.ReactNode;
@@ -29,7 +36,7 @@ export default function TestProvider({
     const [appointments, setAppointments] = useState<Array<appointment>>([]);
     const { user } = useAuth();
 
-    useEffect(() => {
+    const updateAppointments = useCallback(() => {
         if (!user) return;
         let url = `https://appointment-service.onrender.com/appointments/?patient=${user.phn}`;
         fetch(url)
@@ -37,21 +44,26 @@ export default function TestProvider({
             .then((data) => setAppointments(data));
     }, [user]);
 
+    useEffect(() => {
+        updateAppointments();
+    }, [updateAppointments]);
+
     let contextData = {
         appointments: appointments,
+        updateAppointments: updateAppointments,
     };
 
     return (
-        <TestContext.Provider value={contextData}>
+        <AppointmentContext.Provider value={contextData}>
             {children}
-        </TestContext.Provider>
+        </AppointmentContext.Provider>
     );
 }
 
-export function useTest() {
-    const context = useContext(TestContext);
+export function useAppointment() {
+    const context = useContext(AppointmentContext);
     if (!context) {
-        throw new Error("useTest must be used within a TestProvider");
+        throw new Error("useTest must be used within an AppointmentProvider");
     }
     return context;
 }

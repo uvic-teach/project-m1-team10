@@ -2,37 +2,16 @@
 
 import { use, useContext, useEffect, useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
-import { useTest } from "../../../../context/TestContext";
-
-function formatDate(dateString: string) {
-    const [day, month, year] = dateString.split("/");
-
-    const date = new Date(Number(year), Number(month) - 1, Number(day));
-
-    return date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
-}
-
-function formatTime(timeString: string) {
-    const [hour, minute] = timeString.split(":");
-    if (Number(hour) > 12) {
-        return `${Number(hour) - 12}:${minute} PM`;
-    } else {
-        return `${hour}:${minute} AM`;
-    }
-}
-
-const appointmentMethods = {
-    IN: "In-Person",
-    VI: "Video",
-    PH: "Phone",
-};
+import { useAppointment } from "../../../../context/AppointmentContext";
+import {
+    appointmentMethods,
+    formatDateFromAPI,
+    formatTime,
+} from "@/lib/appointments";
+import { doctors } from "@/lib/hardcoded_values";
 
 export default function Page() {
-    let { appointments } = useTest();
+    let { appointments } = useAppointment();
 
     return (
         <>
@@ -44,8 +23,12 @@ export default function Page() {
                             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-sm text-black"
                         >
                             <li>
-                                <p className="font-bold text-xl">{`Doctor ${appointment.doctor}`}</p>
-                                <p>{`${formatDate(
+                                <p className="font-bold text-xl">{`${
+                                    doctors[appointment.doctor]
+                                        ? doctors[appointment.doctor].name
+                                        : `Dr. ${appointment.doctor}`
+                                }`}</p>
+                                <p>{`${formatDateFromAPI(
                                     appointment.date
                                 )} ${formatTime(appointment.start)}`}</p>
                                 <p>
