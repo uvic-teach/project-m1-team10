@@ -14,53 +14,72 @@ export default function Home() {
             day: "Mon",
             id: "monday",
             name: "monday",
-            label: "Monday"
+            label: "Monday",
+            checked: false
         },
 
         {
             day: "Tue",
             id: "tuesday",
             name: "tuesday",
-            label: "Tuesday"
+            label: "Tuesday",
+            checked: false
         },
 
         {
             day: "Wed",
             id: "wednesday",
             name: "wednesday",
-            label: "Wednesay"
+            label: "Wednesay",
+            checked: false
         },
 
         {
             day: "Thur",
             id: "thursday",
             name: "thursday",
-            label: "Thursday"
+            label: "Thursday",
+            checked: false
         },
 
         {
             day: "Fri",
             id: "monday",
             name: "monday",
-            label: "Monday"
+            label: "Monday",
+            checked: false
         },
 
         {
             day: "Sat",
             id: "saturday",
             name: "saturday",
-            label: "Saturday"
+            label: "Saturday",
+            checked: false
         },
         
         {
             day: "Sun",
             id: "sunday",
             name: "sunday",
-            label: "Sunday"
+            label: "Sunday",
+            checked: false
         }
     ]
 
-    const [values, setValues] = useState()
+    const [holidays, setHolidays] = useState([])
+    const [start, setStart] = useState()
+    const [end, setEnd] = useState()
+    const [workingdays, setWorkingdays] = useState([])
+
+
+    const handleInputChange = (e:any) => {
+        let exists = workingdays.find(filter => filter === e.target.value);
+        if(exists) {
+            const updatedDays = workingdays.filter(filter => filter !== e.target.value);
+            setWorkingdays(updatedDays);
+        }
+    }
     
 
     return (
@@ -81,6 +100,7 @@ export default function Home() {
                                     name="start-time"
                                     id="start-time"
                                     placeholder=""
+                                    onChange={e=> setStart(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -96,6 +116,7 @@ export default function Home() {
                                     name="end-time"
                                     id="end-time"
                                     placeholder=""
+                                    onChange={e=> setEnd(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -113,7 +134,9 @@ export default function Home() {
                                             id={item.id}
                                             name={item.name}
                                             className="m-4" 
+                                            value={item.label}
                                             key={index}
+                                            onChange={(e) => handleInputChange(e)}
                                         />
                                         <label key={index} htmlFor={item.id}>{item.day}</label>
                                     </>
@@ -128,8 +151,8 @@ export default function Home() {
                                 multiple
                                 format="MMMM DD YYYY"
                                 plugins={[<DatePanel />]}
-                                value={values}
-                                onChange={setValues}
+                                value={holidays}
+                                onChange={setHolidays}
                             />
                         </div>
 
@@ -144,6 +167,14 @@ export default function Home() {
                             >
                                 Save
                             </button>
+                        </div>
+
+                        <div>
+                            <p>{start}</p>
+                            <p>{end}</p>
+                            <p>{workingdays}</p>
+                            <p>{holidays}</p>
+
                         </div>
 
 
