@@ -42,6 +42,7 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { useAppointment } from "../../context/AppointmentContext";
 import { doctors } from "@/lib/hardcoded_values";
+import { Textarea } from "@/components/ui/textarea";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -94,6 +95,7 @@ export default function AppointmentCreate() {
     const [doctor, setDoctor] = React.useState<number>();
     const [time, setTime] = React.useState<number>();
     const [method, setMethod] = React.useState<string>();
+    const [description, setDescription] = React.useState<string>("");
 
     const [open, setOpen] = React.useState<boolean>(false);
 
@@ -111,6 +113,7 @@ export default function AppointmentCreate() {
             start: `${time}:00`,
             end: `${time + 1}:00`,
             method: "IN",
+            description: description,
         };
 
         console.log(body);
@@ -271,6 +274,16 @@ export default function AppointmentCreate() {
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                        </div>
+                        <div className="grid w-full gap-1.5 pt-6">
+                            <Textarea
+                                placeholder="Description"
+                                id="message"
+                                onChange={(e) => {
+                                    setDescription(e.target.value);
+                                }}
+                            />
+                            <Label htmlFor="message">Description</Label>
                         </div>
                     </div>
                     <DialogFooter>
