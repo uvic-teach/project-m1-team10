@@ -10,12 +10,28 @@ export function formatDateFromAPI(dateString: string) {
     });
 }
 
+export type Appointment = {
+    id: number;
+    date: string;
+    start: string;
+    end: string;
+    method: "IN" | "VI" | "PH";
+    patient: number;
+    doctor: number;
+    description: null | string;
+};
+
 export function formatDateForAPI(date: Date) {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    return `${month}/${day}/${year}`;
+    return `${day}/${month}/${year}`;
+}
+
+export function dateStringToDate(dateString: string) {
+    const [day, month, year] = dateString.split("/");
+    return new Date(Number(year), Number(month) - 1, Number(day));
 }
 
 export function formatTime(timeString: string) {

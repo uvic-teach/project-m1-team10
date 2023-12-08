@@ -9,20 +9,10 @@ import {
     useCallback,
 } from "react";
 import { useAuth } from "./AuthContext";
-
-type appointment = {
-    id: number;
-    date: string;
-    start: string;
-    end: string;
-    method: "IN" | "VI" | "PH";
-    patient: number;
-    doctor: number;
-    description: null | string;
-};
+import { Appointment } from "@/lib/appointments";
 
 type ContextProps = {
-    appointments: Array<appointment>;
+    appointments: Array<Appointment>;
     updateAppointments: () => void;
 };
 
@@ -33,7 +23,7 @@ export default function AppointmentProvider({
 }: {
     children: React.ReactNode;
 }) {
-    const [appointments, setAppointments] = useState<Array<appointment>>([]);
+    const [appointments, setAppointments] = useState<Array<Appointment>>([]);
     const { user } = useAuth();
 
     const updateAppointments = useCallback(() => {
