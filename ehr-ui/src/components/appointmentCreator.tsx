@@ -112,6 +112,7 @@ export default function AppointmentCreate() {
             patient: user.phn,
             start: `${time}:00`,
             end: `${time + 1}:00`,
+            proper_date: date.toISOString(),
             method: "IN",
             description: description,
         };

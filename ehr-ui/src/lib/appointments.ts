@@ -19,6 +19,7 @@ export type Appointment = {
     patient: number;
     doctor: number;
     description: null | string;
+    proper_date: string;
 };
 
 export function formatDateForAPI(date: Date) {

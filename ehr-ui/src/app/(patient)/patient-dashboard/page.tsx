@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     let { user } = useAuth();
-    let { appointments } = useAppointment();
+    let { upcomingApps, pastApps } = useAppointment();
 
     return (
         <>
@@ -25,14 +25,14 @@ export default function Home() {
                     </div>
                     <AppointmentCreate />
 
-                    {appointments && (
+                    {upcomingApps && (
                         <Link href="/appointments">
                             <div className=" bg-white rounded-lg hover:bg-custom-hover-grey shadow-md divide-x flex">
                                 <button className="px-36 py-4">
                                     View Upcoming Appointments
                                 </button>
                                 <button className="px-12">
-                                    {appointments.length}
+                                    {upcomingApps.length}
                                 </button>
                             </div>
                         </Link>
