@@ -157,7 +157,7 @@ export default function AppointmentEdit({ appointment }: AppointmentProps) {
         <>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button className="text-white inline-flex items-center align-middle">
+                    <Button className="text-white flex items-center align-middle">
                         <FaPencil className="ml-0.5 mr-1.5 h-4 w-4" />
                         <p className="text-sm">Edit</p>
                     </Button>

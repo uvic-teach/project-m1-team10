@@ -147,12 +147,10 @@ export default function AppointmentCreate() {
         <>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <div className="bg-custom-button-green rounded-xl p-3 left-0 hover:bg-custom-button-green/70">
-                        <button className="text-white inline-flex">
-                            <FaPlus className="-ml-0.5 mr-1.5 h-5 w-5" /> Book
-                            an appointment
-                        </button>
-                    </div>
+                    <button className="bg-custom-button-green rounded-xl p-3 left-0 hover:bg-custom-button-green/70 flex items-center">
+                        <FaPlus className="text-white ml-0.5 mr-1.5 w-4 h-4" />
+                        <p className="text-white">Book an appointment</p>
+                    </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
