@@ -1,6 +1,6 @@
 import doctors from "@/app/interfaces/data"
 import prisma from "@/app/lib/prisma";
-import { NextApiResponse, NextApiRequest, NextApiHandler} from "next";
+import { NextResponse } from "next/server"
 
 export async function GET(request: Request, context: { params:any }) {
 
@@ -37,30 +37,23 @@ export async function GET(request: Request, context: { params:any }) {
 export async function POST(req: Request, context: { params:any }) {
     try{
 
-        const id = parseInt(context.params.params[0])
-        const employeeId = parseInt(context.params.params[1])
-        const hoursStart = context.params.params[2]
-        const hoursEnd = context.params.params[3]
-        const days = context.params.params[4].split(' ')
+        const employeeId = parseInt(context.params.params[0])
+        const hoursStart = context.params.params[1]
+        const hoursEnd = context.params.params[2]
+        const days = context.params.params[3].split(" ")
+        const holiday = context.params.params[4].split(" ")
         
-        const unrefinedHoliday = context.params.params[5]
-        let holiday = [];
-        if(unrefinedHoliday){
-            holiday  = unrefinedHoliday.map((date:any) => date.toISOString() )
-
-        }
-
         //return Response.json({response: context.params.params})
 
         const upsertAvailabilty = await prisma.availability.upsert({
             where: {
-                id: id, 
                 employeeId : employeeId
             },
             update:{
                 hoursEnd: hoursEnd, 
                 hoursStart:hoursStart,
-                days: days
+                days: days,
+                holiday: holiday
             },
 
             create:{
@@ -71,8 +64,18 @@ export async function POST(req: Request, context: { params:any }) {
                 holiday: holiday
             }
         })
-        return Response.json({response: upsertAvailabilty})
 
+        return new NextResponse(JSON.stringify(upsertAvailabilty), {
+            headers: {
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, Origin, Accept, X-Requested-With, Accept, x-client-key, x-client-token, x-client-secret. Authorization',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+         })
+
+        
+        //return NextResponse.json({response: upsertAvailabilty, error: null})
 
 
     }catch (error){

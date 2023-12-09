@@ -1,6 +1,35 @@
+"use client"
 import Image from 'next/image'
+import { GET } from './api/getall/route'
+
+import { useEffect } from 'react'
 
 export default function Home() {
+
+  async function name() {
+    const response = await fetch('/api/getall', {
+      method: 'GET',
+      cache: 'no-store',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+
+    let { user, error } = await response.json()
+    console.log(user)
+  }
+
+  useEffect(() => {
+    name()
+  }
+
+  )
+  
+  
+
+  
+  
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -108,6 +137,8 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <>
+      </>
     </main>
   )
 }

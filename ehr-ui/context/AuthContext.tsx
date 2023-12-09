@@ -40,7 +40,8 @@ export default function AuthProvider({
 }) {
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
-    const [doctor, setDoctor] = useState<Doctor | null>(null);
+    // set this to 1 so that there is always a doctor logged in, but this should be changed
+    const [doctor, setDoctor] = useState<Doctor | null>({ id: 1 }); // *** TODO: change this to null
 
     let loginUser = async (e: SyntheticEvent) => {
         e.preventDefault();

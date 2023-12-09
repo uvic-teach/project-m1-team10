@@ -15,9 +15,15 @@ import { Button } from "@/components/ui/button";
 
 type AppointmentType = "upcoming" | "past";
 
+// straight copy and pasted from the patient appointment page because I dont want to make a component rn
+
 export default function Page() {
-    let { upcomingApps, pastApps } = useAppointment();
+    let { upcomingApps, pastApps, updateAppointments } = useAppointment();
     let [appType, setAppType] = useState<AppointmentType>("upcoming");
+
+    useEffect(() => {
+        updateAppointments();
+    }, [updateAppointments]);
 
     return (
         <>
@@ -50,11 +56,7 @@ export default function Page() {
                             key={appointment.id}
                             className="bg-white shadow-md rounded px-8 pt-6 w-1/3 mb-4 text-black"
                         >
-                            <p className="font-bold text-xl">{`${
-                                doctors[appointment.doctor]
-                                    ? doctors[appointment.doctor].name
-                                    : `Dr. ${appointment.doctor}`
-                            }`}</p>
+                            <p className="font-bold text-xl">{`${appointment.patient_name}`}</p>
                             <p>{`${formatDateFromAPI(
                                 appointment.date
                             )} ${formatTime(appointment.start)}`}</p>
