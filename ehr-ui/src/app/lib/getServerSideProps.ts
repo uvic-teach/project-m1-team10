@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { auth } from '../auth/auth'
+import { auth } from './auth'
 
 export async function getServerSideProps(context: { req: (IncomingMessage & { cookies: Partial<{ [key: string]: string }> }) | NextApiRequest; res: ServerResponse<IncomingMessage> | NextApiResponse }) {
     const session = await auth(context.req, context.res)
