@@ -19,7 +19,7 @@ export const doctorNavItems = [
     },
     {
         name: "Appointments",
-        href: "/appointments",
+        href: "/doctor-appointments",
         icon: <IoMdCalendar className="w-6 h-6" />,
         current: false,
     },

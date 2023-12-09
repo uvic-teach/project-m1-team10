@@ -17,6 +17,7 @@ export type Appointment = {
     end: string;
     method: "IN" | "VI" | "PH";
     patient: number;
+    patient_name: string;
     doctor: number;
     description: null | string;
     proper_date: string;

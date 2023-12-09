@@ -6,12 +6,17 @@ import { FaPlus } from "react-icons/fa";
 import { useAppointment } from "../../../../context/AppointmentContext";
 import AppointmentCreate from "@/components/appointmentCreator";
 import Link from "next/link";
+import { use, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     let { user } = useAuth();
-    let { upcomingApps, pastApps } = useAppointment();
+    let { upcomingApps, pastApps, updateAppointments } = useAppointment();
+
+    useEffect(() => {
+        updateAppointments();
+    }, [updateAppointments]);
 
     return (
         <>
