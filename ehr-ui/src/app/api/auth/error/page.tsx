@@ -1,24 +1,12 @@
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 
-const errors = {
-    Signin: "Try signing with a different account.",
-    CredentialsSignin:
-        "Sign in failed. Check the details you provided are correct.",
-    default: "Unable to sign in.",
-}
 
 const Error = () => {
-
-    //const router = useRouter()
-
-    //const { error } = router.
-
-    //const errorMessage = error && (errors[error as keyof typeof errors] ?? errors.default)
 
     return (
         <>
             <h1>Oops! Something went wrong</h1>
-            <h2>{/*errorMessage*/}</h2>
+            <Link href={"/doctor-login"}>Return to Login page</Link>
         </>
     )
 }

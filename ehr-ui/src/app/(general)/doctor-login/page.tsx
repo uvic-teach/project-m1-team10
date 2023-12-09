@@ -5,31 +5,47 @@ import { useAuth } from "../../../../context/AuthContext";
 import { useRouter } from 'next/navigation'
 import { Jomolhari } from "next/font/google";
 import { ClassNames } from "@emotion/react";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
     //const { loginUser } = {};
     const router = useRouter();
-    const handleSubmit = (event:any) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [authError, setAuthError] = useState("");
+
+    async function handleSubmit(event: any) {
         event.preventDefault();
         // Handle form submission here
         const action = event.target.action.value;
-      
-      switch (action) {
-        case 'register':
-          // Execute save action
-          router.push('/register')
-          break;
-        case 'login':
-          // Execute delete action
-          break;
-        default:
-          // Handle other actions
-          break;
-      }
+
+        switch (action) {
+            case 'register':
+                // Execute save action
+                router.push('/register');
+                break;
+            case 'login':
+                const response = await signIn("credentials", {
+                    email,
+                    password,
+                    redirect: false,
+                });
+
+                if (response?.ok && response != null) {
+                    console.log("Login successful");
+                    router.push('/doctor-dashboard');
+                } else {
+                    setAuthError(" Check credentials and try again");
+                }
+                break;
+            default:
+                // Handle other actions
+                break;
+        }
     }
 
     return (
-        <>  
+        <>
             <div className="flex h-full w-full md:w-1/3 flex-col justify-center px-2 rounded-md">
                 {/* Text at the top */}
                 <p className="text-white text-center text-2xl pb-[50px] font-['Jomolhari']">
@@ -42,6 +58,11 @@ export default function Login() {
                         onSubmit={handleSubmit}
                         className="mt-15 sm:mx-auto sm:w-full sm:max-w-sm"
                     >
+                        {authError && (
+                            <div className="error message">
+                                Oops! Something went wrong.
+                                {authError}
+                            </div>)}
                         <div className="mb-7">
                             <label
                                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -55,6 +76,9 @@ export default function Login() {
                                 name="email"
                                 type="email"
                                 placeholder="Email Address*"
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                }}
                             />
                         </div>
                         <div className="mb-6">
@@ -70,6 +94,9 @@ export default function Login() {
                                 name="password"
                                 type="password"
                                 placeholder="Password*"
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }}
                             />
                         </div>
                         <div className="flex items-center justify-between">
@@ -92,7 +119,7 @@ export default function Login() {
                     Cedule
                 </p>
             </div>
-        
+
         </>
     );
 }
