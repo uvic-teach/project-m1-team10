@@ -1,7 +1,7 @@
 import prisma from "@/app/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req?:NextRequest, context?: { params:any }) {
+export async function GET(req:NextRequest, context?: { params:any }) {
     try{
 
         const allAvailabilty = await prisma.user.findMany()
