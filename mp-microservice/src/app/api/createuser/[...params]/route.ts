@@ -1,7 +1,6 @@
 import prisma from "@/app/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
 import { SHA256 as sha256 } from "crypto-js";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 //export const runtime = 'edge';
 const hashPassword = (str: string) => {
@@ -20,9 +19,9 @@ export async function GET(req: NextRequest, context: { params: any }) {
             data: { name, email, password, id },
 
         });
-        return Response.json({ user: newUser, error: null })
+        return NextResponse.json({ user: newUser, error: null })
     } catch (error) {
-        return Response.json({ error: error, user: null })
+        return NextResponse.json({ error: error, user: null })
 
     }
 }

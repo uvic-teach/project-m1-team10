@@ -1,7 +1,7 @@
 import prisma from "@/app/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse} from "next/server";
 
-export async function GET(req: NextApiRequest, context: { params: any }) {
+export async function GET(req: NextRequest, context: { params: any }) {
 
     const id = context.params.params[0]
 
@@ -11,14 +11,14 @@ export async function GET(req: NextApiRequest, context: { params: any }) {
                 where: { id: id },
 
             });
-            return Response.json({ user: user, error: null })
+            return NextResponse.json({ user: user, error: null })
         } else {
-            return Response.json({ response: "Invalid number of arguments" })
+            return NextResponse.json({ response: "Invalid number of arguments" })
 
         }
 
     } catch (error) {
-        return Response.json({ error: error, user: null })
+        return NextResponse.json({ error: error, user: null })
 
     }
 }

@@ -1,7 +1,7 @@
 import prisma from "@/app/lib/prisma";
-import { NextApiResponse, NextApiRequest, NextApiHandler} from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(req:NextApiRequest, context: { params:any }) {
+export async function DELETE(req:NextRequest, context: { params:any }) {
     try{
        
         if(context.params.params.length === 1){
@@ -14,14 +14,14 @@ export async function DELETE(req:NextApiRequest, context: { params:any }) {
 
             const deletedItem = await response.json()
             
-            return Response.json({user: deletedItem , error: null})
+            return NextResponse.json({user: deletedItem , error: null})
 
         }else{
-            return Response.json({response: "Invalid number of arguments"})
+            return NextResponse.json({response: "Invalid number of arguments"})
         }
        
     }catch (error){
-        return Response.json({error: error, user: null})
+        return NextResponse.json({error: error, user: null})
     }
     
 }
