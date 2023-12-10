@@ -1,9 +1,13 @@
 import prisma from "@/app/lib/prisma";
-import { hashPassword } from "../createuser/[...params]/route";
+import { SHA256 as sha256 } from "crypto-js";
 
 export async function GET(request: Request, context: { params: any }) {
 
 }
+
+const hashPassword = (str: string) => {
+    return sha256(str).toString();
+};
 
 export async function POST(request: Request, context: { params: any }) {
     try {

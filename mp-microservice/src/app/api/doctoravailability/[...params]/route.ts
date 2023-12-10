@@ -1,8 +1,8 @@
 import doctors from "@/app/interfaces/data"
 import prisma from "@/app/lib/prisma";
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(request: Request, context: { params:any }) {
+export async function GET(request: NextRequest, context: { params:any }) {
 
     try{
     
@@ -19,22 +19,22 @@ export async function GET(request: Request, context: { params:any }) {
             })
             
             if(availability){
-                return Response.json({response: availability})
+                return NextResponse.json({response: availability})
             }else{
-                return Response.json({response: "Unable to get availability because employee does not exist"})
+                return NextResponse.json({response: "Unable to get availability because employee does not exist"})
             }
 
         }else{
-            return Response.json({response: "Invalid number of arguments"})
+            return NextResponse.json({response: "Invalid number of arguments"})
         }
     
     }catch (error){
-        return Response.json({error: error})
+        return NextResponse.json({error: error})
     }
    
 }
 
-export async function POST(req: Request, context: { params:any }) {
+export async function POST(req: NextRequest, context: { params:any }) {
     try{
 
         const employeeId = parseInt(context.params.params[0])
@@ -80,7 +80,7 @@ export async function POST(req: Request, context: { params:any }) {
 
     }catch (error){
 
-        return Response.json({error: error})
+        return NextResponse.json({error: error})
 
     }
 
