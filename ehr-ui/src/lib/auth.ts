@@ -2,9 +2,8 @@ import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next
 import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { z } from 'zod';
 
-const doctorApiURL: string = "http://localhost:3001/api";
+const doctorApiURL: string = "http://localhost:8000/api";
 
 export const authOptions: NextAuthOptions = {
     pages: {
@@ -17,9 +16,6 @@ export const authOptions: NextAuthOptions = {
             id: "credentials",
             name: "Credentials",
             async authorize(credentials: any, request) {
-                const parsedCredentials = z.object({ email: z.string(), password: z.string().min(1) }).safeParse(credentials);
-                console.log("Successfully parsed credentials:", parsedCredentials);
-
                 const userCredentials = {
                     email: credentials.email,
                     password: credentials.password
@@ -32,7 +28,7 @@ export const authOptions: NextAuthOptions = {
                         body: JSON.stringify(userCredentials),
                     });
                     const doctor = await response.json();
-                    console.log("recieved response");
+                    console.log("recieved response:");
                     console.log(doctor);
 
                     if (response.ok && doctor) {
