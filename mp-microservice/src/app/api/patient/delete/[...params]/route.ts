@@ -8,14 +8,13 @@ export async function DELETE(req:NextApiRequest, context: { params:any }) {
 
             const historyID = parseInt(context.params.params[0])
 
-
             const response = await fetch(`https://log-in-microservice.vercel.app/api/history/${historyID}`, {
                 method: "DELETE"
             })
 
-            const Patient = await response.json()
+            const deletedItem = await response.json()
             
-            return Response.json({user: Patient , error: null})
+            return Response.json({user: deletedItem , error: null})
 
         }else{
             return Response.json({response: "Invalid number of arguments"})
