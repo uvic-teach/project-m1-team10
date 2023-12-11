@@ -11,3 +11,11 @@ export interface SideBarItem {
 export interface SidebarProps {
     SideBarItems: SideBarItem[]
 }
+
+export interface historyItem {
+    id: number,
+    doctor: number,
+    description: string,
+    created_at: string,
+    user: number
+}

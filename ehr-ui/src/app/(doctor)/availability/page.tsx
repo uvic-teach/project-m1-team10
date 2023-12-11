@@ -113,7 +113,7 @@ export default function Home() {
         // console.log(refinedHolidays)
 
         const response = await fetch(
-            `http://localhost:8000/api/doctoravailability/1/${start}/${end}/${refinedDays}/${refinedHolidays}`,
+            `https://project-m1-team10-8zys465ng-hungry-yumyummans-projects.vercel.app//api/doctoravailability/1/${start}/${end}/${refinedDays}/${refinedHolidays}`,
             {
                 method: "POST",
                 mode: "cors",
