@@ -19,8 +19,9 @@ export default function NavBar({ home }: any) {
 
     const router = useRouter();
     function handleDoctorLogout() {
-        signOut();
-        router.push("/doctor-login");
+        signOut({
+            callbackUrl: "/doctor-login"
+        });
     }
 
     return (

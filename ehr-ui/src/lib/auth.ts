@@ -3,7 +3,7 @@ import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const doctorApiURL: string = "https://project-m1-team10-8zys465ng-hungry-yumyummans-projects.vercel.app//api";
+const doctorApiURL: string = "https://project-m1-team10-8zys465ng-hungry-yumyummans-projects.vercel.app/api";
 
 export let doctor: any;
 
