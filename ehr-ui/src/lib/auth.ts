@@ -3,7 +3,9 @@ import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const doctorApiURL: string = "http://localhost:8000/api";
+const doctorApiURL: string = "https://project-m1-team10-8zys465ng-hungry-yumyummans-projects.vercel.app//api";
+
+export let doctor: any;
 
 export const authOptions: NextAuthOptions = {
     pages: {
@@ -27,7 +29,7 @@ export const authOptions: NextAuthOptions = {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(userCredentials),
                     });
-                    const doctor = await response.json();
+                    doctor = await response.json();
                     console.log("recieved response:");
                     console.log(doctor);
 

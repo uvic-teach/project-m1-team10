@@ -1,14 +1,10 @@
 "use client";
 
-import { SyntheticEvent, useContext, useState } from "react";
-import { useAuth } from "../../../../context/AuthContext";
+import { useState } from "react";
 import { useRouter } from 'next/navigation'
-import { Jomolhari } from "next/font/google";
-import { ClassNames } from "@emotion/react";
 import { signIn } from "next-auth/react";
 
 export default function Login() {
-    //const { loginUser } = {};
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

@@ -2,9 +2,10 @@ import { Fragment, use } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { CgProfile } from "react-icons/cg";
-import { IconContext } from "react-icons";
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation'
 
 const navigation = [{ name: "Dashboard", href: "#", current: true }];
 
@@ -14,6 +15,13 @@ function classNames(...classes: any) {
 
 export default function NavBar({ home }: any) {
     const { logoutUser } = useAuth();
+    const { data: session, status } = useSession();
+
+    const router = useRouter();
+    function handleDoctorLogout() {
+        signOut();
+        router.push("/doctor-login");
+    }
 
     return (
         <Disclosure as="nav" className="bg-custom-blue">
@@ -80,7 +88,7 @@ export default function NavBar({ home }: any) {
                                             />
                                         </Menu.Button>
                                     </div>
-                                    
+
                                     <Transition
                                         as={Fragment}
                                         enter="transition ease-out duration-100"
@@ -123,7 +131,7 @@ export default function NavBar({ home }: any) {
                                                 )}
                                             </Menu.Item>
 
-                                            <Menu.Item>
+                                            {useAuth().user && (<Menu.Item>
                                                 {({ active }) => (
                                                     <a
                                                         className={classNames(
@@ -139,7 +147,25 @@ export default function NavBar({ home }: any) {
                                                         Sign out
                                                     </a>
                                                 )}
-                                            </Menu.Item>
+                                            </Menu.Item>)}
+
+                                            {status === 'authenticated' && (<Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        className={classNames(
+                                                            active
+                                                                ? "bg-gray-100"
+                                                                : "",
+                                                            "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                                                        )}
+                                                        onClick={() =>
+                                                            handleDoctorLogout()
+                                                        }
+                                                    >
+                                                        Sign out
+                                                    </a>
+                                                )}
+                                            </Menu.Item>)}
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>
