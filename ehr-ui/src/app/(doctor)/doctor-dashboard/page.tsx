@@ -1,21 +1,20 @@
 "use client";
-import { doctors } from "@/lib/hardcoded_values";
 import { Inter } from "next/font/google";
-import { useAuth } from "../../../../context/AuthContext";
 import { useAppointment } from "../../../../context/AppointmentContext";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
     const { upcomingApps, pastApps } = useAppointment();
-    const { doctor } = useAuth();
+    const { data: session, status } = useSession();
     return (
         <div className="flex h-full gap-12 flex-col items-center place-content-start font-['Inter']">
-            {doctor && (
+            {status === 'authenticated' && (
                 <div>
                     <h1 className="text-4xl mb-5 text-white font-['Jomolhari']">
-                        Welcome {doctors[doctor.id].name}
+                        Welcome {session.user?.name}
                     </h1>
                 </div>
             )}

@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useAuth } from "./AuthContext";
 import { Appointment } from "@/lib/appointments";
+import { doctor } from "../src/lib/auth";
 
 type ContextProps = {
     upcomingApps: Array<Appointment>;
@@ -27,7 +28,9 @@ export default function AppointmentProvider({
     const [upcomingApps, setUpcomingApps] = useState<Array<Appointment>>([]);
     const [pastApps, setPastApps] = useState<Array<Appointment>>([]);
 
-    const { user, doctor } = useAuth();
+    const { user } = useAuth();
+    //const { data: session, status } = useSession();
+    //const doctor = session?.user;
 
     const separateAppointments = (appointments: Appointment[]) => {
         const now = new Date();

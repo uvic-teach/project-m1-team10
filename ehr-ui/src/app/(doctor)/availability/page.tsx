@@ -1,13 +1,16 @@
 "use client";
+import { useSession } from "next-auth/react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
+import { doctor } from "../../../lib/auth"
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+    const { status } = useSession();
     const days = [
         {
             day: "Mon",
@@ -99,8 +102,8 @@ export default function Home() {
             holidays instanceof DateObject
                 ? unrefinedHolidays.push(new Date(holidays).toISOString())
                 : (unrefinedHolidays = holidays.map((holiday) => {
-                      return new Date(holiday).toISOString();
-                  }));
+                    return new Date(holiday).toISOString();
+                }));
         }
 
         if (unrefinedHolidays.length <= 1) {
@@ -113,7 +116,7 @@ export default function Home() {
         // console.log(refinedHolidays)
 
         const response = await fetch(
-            `https://project-m1-team10-8zys465ng-hungry-yumyummans-projects.vercel.app//api/doctoravailability/1/${start}/${end}/${refinedDays}/${refinedHolidays}`,
+            `https://project-m1-team10-8zys465ng-hungry-yumyummans-projects.vercel.app//api/doctoravailability/${doctor.id}/${start}/${end}/${refinedDays}/${refinedHolidays}`,
             {
                 method: "POST",
                 mode: "cors",
@@ -126,7 +129,7 @@ export default function Home() {
 
     return (
         <>
-            <div className="flex h-full flex-col justify-center items-center bg-blue-300 rounded-md">
+            {status === 'authenticated' && (<div className="flex h-full flex-col justify-center items-center bg-blue-300 rounded-md">
                 <div className="bg-red-400 rounded-md lg:py-12 lg:px-6">
                     <form>
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -242,7 +245,7 @@ export default function Home() {
 
                             <p>
                                 {holidays !== null &&
-                                holidays instanceof DateObject ? (
+                                    holidays instanceof DateObject ? (
                                     holidays.toString()
                                 ) : (
                                     <>
@@ -257,7 +260,7 @@ export default function Home() {
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>)}
         </>
     );
 }
